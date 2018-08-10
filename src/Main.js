@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import ListBooksTitle from './ListBooksTitle'
-import Bookshelf from './Bookshelf'
+import Bookshelves from './Bookshelves'
 import OpenSearch from './OpenSearch'
 
 class Main extends Component {
     render() {
+        // console.log(this.props.books)
         return (
             <div className="list-books">
                 <ListBooksTitle />
-
-                <div className="list-books-content">
-                        <Bookshelf />
-                        <Bookshelf />
-                        <Bookshelf />
-                </div>
-
+                <Bookshelves />
                 <OpenSearch />
-                
           </div>
         )
     }
