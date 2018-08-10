@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Book from './Book'
+// import * as BooksAPI from './BooksAPI'
 
 class Bookshelf extends Component {
 
@@ -15,11 +16,12 @@ class Bookshelf extends Component {
                                 .filter(book =>
                                     book.shelf === this.props.bookshelfId)
                                 .map(book => (
-                                    
+
                                     <li key={book.id}>
 
                                         <Book 
                                             book={book}
+                                            moveBookToShelf={this.props.moveBookToShelf}
                                         />
                                     </li>  
                                 ))

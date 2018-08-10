@@ -1,24 +1,11 @@
 import React, { Component } from 'react'
 import ListBooksTitle from './ListBooksTitle'
 import Bookshelf from './Bookshelf'
-import * as BooksAPI from './BooksAPI'
+// import * as BooksAPI from './BooksAPI'
+
+
 
 class Main extends Component {
-
-    state = {
-        books: []
-    }
-    
-    componentDidMount() {
-        BooksAPI.getAll()
-            .then((books) => {
-                this.setState({ books })
-            })
-    }
-    
-    moveBookToShelf = (book, shelf) => {
-        BooksAPI.update(book, shelf)
-    }
 
     render() {
         return (
@@ -27,22 +14,22 @@ class Main extends Component {
 
             <div className="list-books-content">
                 <Bookshelf 
-                    books={this.state.books}
                     bookshelfTitle='Currently Reading'
                     bookshelfId='currentlyReading'
-                    moveBookToShelf={this.state.moveBookToShelf}
+                    books={this.props.books}
+                    moveBookToShelf={this.props.moveBookToShelf}
                 />
-                <Bookshelf 
-                    books={this.state.books}
+                <Bookshelf
                     bookshelfTitle='Want to Read'
                     bookshelfId='wantToRead'
-                    moveBookToShelf={this.state.moveBookToShelf}
+                    books={this.props.books}
+                    moveBookToShelf={this.props.moveBookToShelf}
                 />
                 <Bookshelf 
-                    books={this.state.books}
                     bookshelfTitle='Read'
                     bookshelfId='read'
-                    moveBookToShelf={this.state.moveBookToShelf}
+                    books={this.props.books}
+                    moveBookToShelf={this.props.moveBookToShelf}
                 />
             </div>
 
