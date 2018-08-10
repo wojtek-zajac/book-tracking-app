@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import BookShelfChanger from './BookShelfChanger'
+// import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
+
     render() {
         return(
             <div className="book">
@@ -18,7 +20,9 @@ class Book extends Component {
                         }}>
                     </div>
 
-                    <BookShelfChanger />
+                    <BookShelfChanger 
+                        book={this.book}
+                    />
 
                 </div>
 
