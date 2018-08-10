@@ -5,7 +5,6 @@ import OpenSearch from './OpenSearch'
 
 class Main extends Component {
     render() {
-        // console.log(this.props.books)
         return (
             <div className="list-books">
                 <ListBooksTitle />

@@ -15,7 +15,11 @@ class ReadShelf extends Component {
                                     book.shelf === 'read')
                                 .map(book => (
                                     <li key={book.id}>
-                                        <Book />
+
+                                        <Book 
+                                            book={book}
+                                        />
+                                        
                                     </li>  
                                 ))
                         }

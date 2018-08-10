@@ -3,6 +3,7 @@ import Book from './Book'
 
 class CurrentlyReadingShelf extends Component {
     render() {
+        console.log(this.props.books)
         return(
             <div className="bookshelf">
                 <h2 className="bookshelf-title">Currently Reading</h2>
@@ -15,7 +16,11 @@ class CurrentlyReadingShelf extends Component {
                                     book.shelf === 'currentlyReading')
                                 .map(book => (
                                     <li key={book.id}>
-                                        <Book />
+
+                                        <Book 
+                                            book={book}
+                                        />
+                                        
                                     </li>  
                                 ))
                         }

@@ -18,22 +18,23 @@ componentDidMount() {
   }
 
 render() {
-        return(
-            <div className="list-books-content">
+    
+    return(
+        <div className="list-books-content">
                 
-                <CurrentlyReadingShelf 
-                    books={this.state.books}
-                />
+            <CurrentlyReadingShelf 
+                books={this.state.books}
+            />
 
-                <WantToReadShelf 
-                    books={this.state.books}
-                />
+            <WantToReadShelf 
+                books={this.state.books}
+            />
 
-                <ReadShelf 
-                    books={this.state.books}
-                />
+            <ReadShelf 
+                books={this.state.books}
+            />
 
-            </div>
+        </div>
         )
     }
 }

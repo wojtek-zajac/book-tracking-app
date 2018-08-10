@@ -12,7 +12,9 @@ class Book extends Component {
                         style={{ 
                             width: 128, 
                             height: 193, 
-                            backgroundImage: '' 
+                            backgroundImage: `url(${
+                                                this.props.book.imageLinks.thumbnail
+                                            })`
                         }}>
                     </div>
 
@@ -20,9 +22,13 @@ class Book extends Component {
 
                 </div>
 
-                <div className="book-title"></div>
+                <div className="book-title">
+                    {this.props.book.title}
+                </div>
 
-                <div className="book-authors"></div>
+                <div className="book-authors">
+                    {this.props.book.authors}
+                </div>
                 
             </div>
         )
