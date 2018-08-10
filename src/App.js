@@ -10,7 +10,6 @@ class BooksApp extends React.Component {
     books: []
   }
 
-
   fetchBooks() {
     BooksAPI.getAll()
         .then((books) => {
@@ -23,9 +22,10 @@ class BooksApp extends React.Component {
   }
 
   moveBookToShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf);
-    
-    this.fetchBooks()
+    BooksAPI.update(book, shelf)
+      .then(response => {
+        this.fetchBooks()
+      })
   }
 
   render() {
@@ -34,6 +34,7 @@ class BooksApp extends React.Component {
         {/* <Search /> */}
         <Main 
           books={this.state.books}
+          fetchBooks={this.fetchBooks}
           moveBookToShelf={this.moveBookToShelf}
         />
       </div>
