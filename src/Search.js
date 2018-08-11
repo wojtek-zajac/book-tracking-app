@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
+import {DebounceInput} from 'react-debounce-input'
 
 class Search extends Component {
 
@@ -49,7 +50,9 @@ class Search extends Component {
                     </a>
 
                     <div className="search-books-input-wrapper">
-                        <input 
+                        <DebounceInput
+                            minLength={2}
+                            debounceTimeout={400}
                             type="text"
                             placeholder="Search by title or author"
                             value={this.state.query}
@@ -64,16 +67,19 @@ class Search extends Component {
 
             <div className="search-books-results">
               <ol className="books-grid">
+                
                 {
-                    this.state.queryBooks.map(
-                        queryBook => (
-                            <li key={queryBook.id}>
-                                <Book 
-                                    book={queryBook}
-                                />
-                            </li>
+                    this.state.query ?
+                        this.state.queryBooks.map(
+                            queryBook => (
+                                <li key={queryBook.id}>
+                                    <Book 
+                                        book={queryBook}
+                                    />
+                                </li>
+                            )
                         )
-                    )
+                        : ''
                 }
               
               </ol>
