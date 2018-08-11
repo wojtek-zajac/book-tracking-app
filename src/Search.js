@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 
 class Search extends Component {
+
+    state = {
+        query: ''
+    }
+
+    queryResults = (query) => {
+        this.setState({
+            query: query
+        })
+    }
+
     render() {
         return (
             <div className="search-books">
@@ -13,10 +24,20 @@ class Search extends Component {
                             this.setState({ 
                                 showSearchPage: false 
                             })}
-                    >Close</a>
+                    >
+                    Close
+                    </a>
 
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author"/>
+                        <input 
+                            type="text"
+                            placeholder="Search by title or author"
+                            value={this.state.query}
+                            onChange={(event) =>
+                                this.queryResults(
+                                    event.target.value
+                                )}
+                            />
                     </div>
 
                 </div>
