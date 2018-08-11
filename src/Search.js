@@ -1,15 +1,35 @@
 import React, { Component } from 'react'
+import * as BooksAPI from './BooksAPI'
+import Book from './Book'
 
 class Search extends Component {
 
     state = {
-        query: ''
+        query: '',
+        queryBooks: []
     }
 
-    queryResults = (query) => {
+    updateQuery = (query) => {
         this.setState({
             query: query
         })
+        this.updateSearchedBooks(query)
+    }
+
+    updateSearchedBooks = (query) => {
+
+        if (query) {
+            BooksAPI.search(query)
+            .then((queryBooks) => {
+                if (queryBooks.error) {
+                    this.setState({ queryBooks: [] })
+                } else {
+                    this.setState( {queryBooks} )
+                }
+            })
+        } else {
+            this.setState({ queryBooks: [] })
+        }
     }
 
     render() {
@@ -34,7 +54,7 @@ class Search extends Component {
                             placeholder="Search by title or author"
                             value={this.state.query}
                             onChange={(event) =>
-                                this.queryResults(
+                                this.updateQuery(
                                     event.target.value
                                 )}
                             />
@@ -43,7 +63,20 @@ class Search extends Component {
                 </div>
 
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+                {
+                    this.state.queryBooks.map(
+                        queryBook => (
+                            <li key={queryBook.id}>
+                                <Book 
+                                    book={queryBook}
+                                />
+                            </li>
+                        )
+                    )
+                }
+              
+              </ol>
             </div>
 
           </div>
