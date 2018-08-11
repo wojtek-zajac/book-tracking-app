@@ -1,5 +1,6 @@
 import React from 'react'
-// import Main from './Main'
+import { Route } from 'react-router-dom'
+import Main from './Main'
 import Search from './Search'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
@@ -31,14 +32,24 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Search 
-          moveBookToShelf={this.moveBookToShelf}
+        <Route 
+          exact path='/'
+          render={() => (
+            <Main 
+              books={this.state.books}
+              fetchBooks={this.fetchBooks}
+              moveBookToShelf={this.moveBookToShelf}
+            />
+          )}
         />
-        {/* <Main 
-          books={this.state.books}
-          fetchBooks={this.fetchBooks}
-          moveBookToShelf={this.moveBookToShelf}
-        /> */}
+        <Route 
+          path='/search'
+          render={() => (
+            <Search 
+              moveBookToShelf={this.moveBookToShelf}
+            />
+          )}
+        />
       </div>
     )
   }
