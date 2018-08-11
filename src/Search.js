@@ -56,7 +56,7 @@ class Search extends Component {
                                 this.updateQuery(
                                     event.target.value
                                 )}
-                            />
+                        />
                     </div>
 
                 </div>
@@ -66,19 +66,29 @@ class Search extends Component {
                 
                 {
                     this.state.query ?
-                        this.state.queryBooks.map(
-                            queryBook => (
-                                <li key={queryBook.id}>
-                                    <Book 
-                                        book={queryBook}
-                                        moveBookToShelf={this.props.moveBookToShelf}
-                                    />
+                        this.state.queryBooks.map(queryBook => {
+                            
+                            let defaultShelf = 'none'
+
+                            this.props.books.map(book => (
+                                book.id === queryBook.id ?
+                                defaultShelf = book.shelf :
+                                ''
+                            ))
+
+                            return(
+                                <li 
+                                    key={queryBook.id}>
+                                        <Book 
+                                            book={queryBook}
+                                            moveBookToShelf={this.props.moveBookToShelf}
+                                            currentShelf={defaultShelf}
+                                        />
                                 </li>
                             )
-                        )
-                        : ''
+                        }) : 
+                    ''
                 }
-              
               </ol>
             </div>
 
