@@ -31,7 +31,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Search />
+        <Search 
+          moveBookToShelf={this.moveBookToShelf}
+        />
         {/* <Main 
           books={this.state.books}
           fetchBooks={this.fetchBooks}

@@ -75,6 +75,7 @@ class Search extends Component {
                                 <li key={queryBook.id}>
                                     <Book 
                                         book={queryBook}
+                                        moveBookToShelf={this.props.moveBookToShelf}
                                     />
                                 </li>
                             )
