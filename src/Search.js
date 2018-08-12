@@ -9,7 +9,7 @@ class Search extends Component {
 
     state = {
         query: '',
-        queryBooks: []
+        queryBooks: [],
     }
 
     updateQuery = (query) => {
@@ -17,6 +17,10 @@ class Search extends Component {
             query: query
         })
         this.updateSearchedBooks(query)
+    }
+
+    clearQuery = () => {
+        this.setState({query: ''})
     }
 
     updateSearchedBooks = (query) => {
@@ -38,7 +42,7 @@ class Search extends Component {
     render() {
 
         this.state.queryBooks.sort(sortBy('title'))
-        
+
         return (
             <div className="search-books">
 
@@ -52,8 +56,8 @@ class Search extends Component {
                     <div className="search-books-input-wrapper">
                         <DebounceInput
                             autoFocus
-                            minLength={2}
-                            debounceTimeout={400}
+                            minLength={1}
+                            debounceTimeout={300}
                             type="text"
                             placeholder="Search by title or author"
                             value={this.state.query}
@@ -66,7 +70,17 @@ class Search extends Component {
 
                 </div>
 
+
+            {(this.state.queryBooks.length === 0 && this.state.query !== '') && (             
+                <div className='notification'>
+                    <span className='notification-text'>No results!</span>
+                    <button className='reset-query-button' onClick={this.clearQuery}>Reset</button>
+                </div>
+            )}
+
+            
             <div className="search-books-results">
+
               <ol className="books-grid">
                 
                 {
@@ -82,6 +96,8 @@ class Search extends Component {
                             ))
 
                             return(
+                                    this.state.queryBooks.length !==0 ?
+
                                 <li 
                                     key={queryBook.id}>
                                         <Book 
@@ -90,11 +106,15 @@ class Search extends Component {
                                             currentShelf={defaultShelf}
                                         />
                                 </li>
+                                :
+                                <p>No results</p>
                             )
                         }) : 
                     ''
                 }
               </ol>
+
+            
             </div>
 
           </div>

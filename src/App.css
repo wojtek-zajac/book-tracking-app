@@ -130,6 +130,42 @@ body,
   /* background-image: url('./icons/arrow-back.svg'); */
 }
 
+.notification {
+  padding: 80px;
+  visibility: hidden;
+  animation: 2s fadeIn;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.notification-text {
+  padding: 10px;
+}
+
+.reset-query-button {
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.reset-query-button:hover {
+  background-color: lightgrey;
+}
+
 .search-books-results {
   padding: 80px 10px 20px;
 }
