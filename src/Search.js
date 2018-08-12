@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import SearchBar from './SearchBar'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
-import {DebounceInput} from 'react-debounce-input'
 import sortBy from 'sort-by'
+import SearchNotification from './SearchNotification'
 
 class Search extends Component {
 
@@ -20,18 +20,23 @@ class Search extends Component {
     }
 
     clearQuery = () => {
-        this.setState({query: ''})
+        this.setState({
+            query: ''
+        })
     }
 
     updateSearchedBooks = (query) => {
-
         if (query) {
             BooksAPI.search(query)
             .then((queryBooks) => {
                 if (queryBooks.error) {
-                    this.setState({ queryBooks: [] })
+                    this.setState({
+                        queryBooks: [] 
+                    })
                 } else {
-                    this.setState( {queryBooks} )
+                    this.setState({
+                        queryBooks
+                    })
                 }
             })
         } else {
@@ -40,83 +45,46 @@ class Search extends Component {
     }
 
     render() {
-
         this.state.queryBooks.sort(sortBy('title'))
 
         return (
             <div className="search-books">
-
-                <div className="search-books-bar">
-                    
-                    <Link 
-                        to='/'
-                        className="close-search"
-                    >Close</Link>
-
-                    <div className="search-books-input-wrapper">
-                        <DebounceInput
-                            autoFocus
-                            minLength={1}
-                            debounceTimeout={300}
-                            type="text"
-                            placeholder="Search by title or author"
-                            value={this.state.query}
-                            onChange={(event) =>
-                                this.updateQuery(
-                                    event.target.value
-                                )}
-                        />
-                    </div>
-
-                </div>
-
+                <SearchBar 
+                    query={this.state.query}
+                    updateQuery={this.updateQuery}
+                />
 
             {(this.state.queryBooks.length === 0 && this.state.query !== '') && (             
-                <div className='notification'>
-                    <span className='notification-text'>No results!</span>
-                    <button className='reset-query-button' onClick={this.clearQuery}>Reset</button>
-                </div>
+                <SearchNotification 
+                    clearQuery={this.clearQuery}
+                />
             )}
 
-            
             <div className="search-books-results">
-
               <ol className="books-grid">
-                
                 {
                     this.state.query ?
                         this.state.queryBooks.map(queryBook => {
-                            
                             let defaultShelf = 'none'
-
                             this.props.books.map(book => (
                                 book.id === queryBook.id ?
                                 defaultShelf = book.shelf :
                                 ''
                             ))
-
-                            return(
-                                    this.state.queryBooks.length !==0 ?
-
-                                <li 
-                                    key={queryBook.id}>
-                                        <Book 
-                                            book={queryBook}
-                                            moveBookToShelf={this.props.moveBookToShelf}
-                                            currentShelf={defaultShelf}
-                                        />
+                            return (
+                                <li key={queryBook.id}>
+                                    <Book 
+                                        book={queryBook}
+                                        moveBookToShelf={this.props.moveBookToShelf}
+                                        currentShelf={defaultShelf}
+                                    />
                                 </li>
-                                :
-                                <p>No results</p>
                             )
-                        }) : 
-                    ''
+                        }) 
+                    : ''
                 }
               </ol>
-
-            
             </div>
-
           </div>
         )
     }
