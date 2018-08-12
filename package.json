@@ -1,6 +1,8 @@
 {
+  "homepage": "https://wojtek-zajac.github.io/book-tracking-app/",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
+    "gh-pages": "^1.2.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.2",
     "react-debounce-input": "^3.2.0",
@@ -15,6 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   }
 }
