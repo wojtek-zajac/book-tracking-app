@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 import {DebounceInput} from 'react-debounce-input'
+import sortBy from 'sort-by'
 
 class Search extends Component {
 
@@ -35,6 +36,9 @@ class Search extends Component {
     }
 
     render() {
+
+        this.state.queryBooks.sort(sortBy('title'))
+        
         return (
             <div className="search-books">
 
