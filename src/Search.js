@@ -47,6 +47,7 @@ class Search extends Component {
 
                     <div className="search-books-input-wrapper">
                         <DebounceInput
+                            autoFocus
                             minLength={2}
                             debounceTimeout={400}
                             type="text"

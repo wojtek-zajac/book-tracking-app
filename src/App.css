@@ -125,6 +125,11 @@ body,
   font-size: 0;
 }
 
+.close-search:hover {
+  background-color: rgb(249, 249, 249);
+  /* background-image: url('./icons/arrow-back.svg'); */
+}
+
 .search-books-results {
   padding: 80px 10px 20px;
 }
