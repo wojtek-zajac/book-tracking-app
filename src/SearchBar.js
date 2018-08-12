@@ -10,7 +10,8 @@ class SearchBar extends Component {
                         to='/'
                         className="close-search"
                     >
-                    Close</Link>
+                    Close
+                    </Link>
                     <div className="search-books-input-wrapper">
                         <DebounceInput
                             autoFocus
@@ -22,7 +23,8 @@ class SearchBar extends Component {
                             onChange={(event) =>
                                 this.props.updateQuery(
                                     event.target.value
-                                )}
+                                )
+                            }
                         />
                     </div>
             </div>

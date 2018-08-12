@@ -10,7 +10,8 @@ class SearchNotification extends Component {
                         onClick={
                             this.props.clearQuery
                         }
-                    >Reset
+                    >
+                    Reset
                     </button>
             </div>
         )

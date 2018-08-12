@@ -46,7 +46,6 @@ class Search extends Component {
 
     render() {
         this.state.queryBooks.sort(sortBy('title'))
-
         return (
             <div className="search-books">
                 <SearchBar 
@@ -62,27 +61,24 @@ class Search extends Component {
 
             <div className="search-books-results">
               <ol className="books-grid">
-                {
-                    this.state.query ?
-                        this.state.queryBooks.map(queryBook => {
-                            let defaultShelf = 'none'
-                            this.props.books.map(book => (
-                                book.id === queryBook.id ?
-                                defaultShelf = book.shelf :
-                                ''
-                            ))
-                            return (
-                                <li key={queryBook.id}>
-                                    <Book 
-                                        book={queryBook}
-                                        moveBookToShelf={this.props.moveBookToShelf}
-                                        currentShelf={defaultShelf}
-                                    />
-                                </li>
-                            )
-                        }) 
-                    : ''
-                }
+                {this.state.query ?
+                    this.state.queryBooks.map(queryBook => {
+                        let defaultShelf = 'none'
+                        this.props.books.map(book => (
+                            book.id === queryBook.id ?
+                            defaultShelf = book.shelf :
+                            ''
+                        ))
+                    return (
+                        <li key={queryBook.id}>
+                            <Book 
+                                book={queryBook}
+                                moveBookToShelf={this.props.moveBookToShelf}
+                                currentShelf={defaultShelf}
+                            />
+                        </li>
+                    )}) 
+                : ''}
               </ol>
             </div>
           </div>
