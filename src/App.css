@@ -36,6 +36,15 @@ body,
 .list-books-content {
   padding: 0 0 80px;
   flex: 1;
+
+}
+
+@media (min-width: 1300px) {
+  .list-books-content {
+    width: 70%;
+    display: block;
+    margin: auto;
+  }
 }
 
 .bookshelf:nth-child(1) h2{
